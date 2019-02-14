@@ -94,35 +94,47 @@
 `f[i][j] = f[i - 1][j], if s[i - 1] != t[i - 1]`
 `f[i][j] = f[i - 1][j] + f[i - 1][j - 1], if s[i - 1] == t[i - 1]`|
 
-- [ ] 0116
+- [X] 0116
 
-||
+|递归|
 |:--|
-||
+|除了栈空间外不能用额外的空间，那么这样设计递归即可：
+`populateNext(currentNode, predecessorNode, successorNode)`
+`   predecessorNode->next = currentNode`
+`   currentNode->next = successorNode`
+`   populateNext(currentNode->left, predecessorNode->right, currentNode->right)`
+`   populateNext(currentNode->right, currentNode->left, successorNode->left)`
+其中predecessorNode表示在currentNode之前紧邻它的结点，successorNode表示在currentNode之后紧邻它的结点。因为保证输入二叉树是完全二叉树，所以递归过程保持了紧邻这一性质|
 
-- [ ] 0117
+- [X] 0117
 
-||
+|递归|
 |:--|
-||
+|除了“保证输入二叉树是完全二叉树”之外，跟上一题完全相同
+分析题意，查找一个结点x的next成员可以利用其父结点p的next，在p的右侧查找第一个含有子结点的结点p'，记p'的第一个子结点为c，则c应为x的next成员。算法设计如下：
+`populateNext(currentNode, parentNode)`
+`   currentNode->next = firstChild(findNearest(parentNode))`
+`   populateNext(currentNode->right, currentNode)`
+`   populateNext(currentNode->left, currentNode)`
+注意递归过程中应先递归right，因为要保证parentNode及其右侧结点的next成员是正确的，否则可能出现错漏|
 
-- [ ] 0118
+- [X] 0118
 
-||
+|模拟|
 |:--|
-||
+|纯模拟，按题意写即可|
 
-- [ ] 0119
+- [X] 0119
 
-||
+|组合|
 |:--|
-||
+|帕斯卡三角形的每一行是对应幂次二项展开的系数，即每一项都是C(x, y)。编写函数求出C(x, y)即可|
 
-- [ ] 0120
+- [X] 0120
 
-||
+|动态规划|
 |:--|
-||
+|除了数组形状有点不同，就是一个简单的二维DP|
 
 - [ ] 0121
 
