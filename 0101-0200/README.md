@@ -100,10 +100,10 @@
 |:--|
 |除了栈空间外不能用额外的空间，那么这样设计递归即可：
 `populateNext(currentNode, predecessorNode, successorNode)`
-`   predecessorNode->next = currentNode`
-`   currentNode->next = successorNode`
-`   populateNext(currentNode->left, predecessorNode->right, currentNode->right)`
-`   populateNext(currentNode->right, currentNode->left, successorNode->left)`
+`>>>predecessorNode->next = currentNode`
+`>>>currentNode->next = successorNode`
+`>>>populateNext(currentNode->left, predecessorNode->right, currentNode->right)`
+`>>>populateNext(currentNode->right, currentNode->left, successorNode->left)`
 其中predecessorNode表示在currentNode之前紧邻它的结点，successorNode表示在currentNode之后紧邻它的结点。因为保证输入二叉树是完全二叉树，所以递归过程保持了紧邻这一性质|
 
 - [X] 0117
@@ -113,9 +113,9 @@
 |除了“保证输入二叉树是完全二叉树”之外，跟上一题完全相同
 分析题意，查找一个结点x的next成员可以利用其父结点p的next，在p的右侧查找第一个含有子结点的结点p'，记p'的第一个子结点为c，则c应为x的next成员。算法设计如下：
 `populateNext(currentNode, parentNode)`
-`   currentNode->next = firstChild(findNearest(parentNode))`
-`   populateNext(currentNode->right, currentNode)`
-`   populateNext(currentNode->left, currentNode)`
+`>>>currentNode->next = firstChild(findNearest(parentNode))`
+`>>>populateNext(currentNode->right, currentNode)`
+`>>>populateNext(currentNode->left, currentNode)`
 注意递归过程中应先递归right，因为要保证parentNode及其右侧结点的next成员是正确的，否则可能出现错漏|
 
 - [X] 0118
